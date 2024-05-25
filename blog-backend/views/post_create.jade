@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+//- todo Implement the User who created it and image if theres is one
+form(action="" method="POST") 
+    h1= title
+    input(type="text" name="title" placeholder="title")
+    input(type="text" name="description" placeholder="description")
+    input(type="checkbox" name="isPublished" value="true")
+
+    button Sign Up
+
+
+    if errors 
+      for err in errors
+         p #{err.msg}   

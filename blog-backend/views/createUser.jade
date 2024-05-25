@@ -9,3 +9,8 @@ block content
     input(type="password" name="password" placeholder="password")
 
     button Sign Up
+
+
+    if errors 
+      for err in errors
+         p #{err.msg}
