@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  if user
+    h4 welcome #{user.username}
+    a(href="/log-out") Log Out? 
+
+  if post_list.length 
+    ul
+    each post in post_list
+      li 
+        h1 #{post.title}
+        p #{post.description}
+        p #{post.date.getFullYear()} #{post.date.getMonth()} #{post.date.getDate()}
+        h4 #{post.user.username}
+  else 
+    p there are no posts
+
+  a(href="/sign-in")  Login
+  br
+  a(href="/sign-up")  Sign Up

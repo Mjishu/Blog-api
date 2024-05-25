@@ -1,0 +1,10 @@
+extends layout
+
+block content 
+
+    h1 Sign In
+
+    form(action="/log-in" method="POST")
+        input(type="text" placeholder="username" name="username")
+        input(type="password" name="password" placeholder="password")
+        button Log In
