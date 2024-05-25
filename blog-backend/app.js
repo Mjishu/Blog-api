@@ -45,7 +45,7 @@ async function main(){
 }
 
 //?-------------------------Authentication-------------------------------------------
-//! Not staying logged in when i move between links
+//! Not staying logged in when i move between links, Should this be in userController on sign-in POST?
 passport.use(
   new LocalStrategy(async(username,password,done) =>{
     try{
@@ -57,7 +57,7 @@ passport.use(
       if(!match){
         return done (null,false, {message:"Incorrect Password"})
       };
-      console.log("found user")
+      console.log(user) //! Finds the user but doesnt log in?? or does it log in for a second and then log out 
       return done(null,user);
     }catch(err){
       return done(err)
@@ -88,6 +88,7 @@ app.get("/log-out", (req,res,next)=>{
     if(err){
       return next(err);
     }
+    console.log("loggin out")
     res.redirect("/")
   })
 })
@@ -107,3 +108,6 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+// TODO) Fix the login issue, Add route protection 

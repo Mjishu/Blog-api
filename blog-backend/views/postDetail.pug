@@ -9,5 +9,8 @@ block content
         p= post.description
         p= post.date
 
-
+    a(href=post.url + "/delete") Delete?
+    br
+    a(href=post.url + "/update") Edit 
+    br
     a(href="/") Home 

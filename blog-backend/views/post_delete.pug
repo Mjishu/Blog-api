@@ -1,0 +1,10 @@
+extends layout
+
+block content 
+
+    h1 #{title}
+
+    p Are you sure you want to delete this Post?
+    form(method="POST")
+        input#postid.form-control(type="hidden", name="postid", value=post._id)
+        button.btn(type="submit") Delete

@@ -25,7 +25,7 @@ router.get("/sign-up", user_controller.user_create_get);
 router.post("/sign-up", user_controller.user_create_post);
 
 router.get("/sign-in", user_controller.user_signin_get);
-router.get("/sign-in", user_controller.user_signin_post);
+// router.post("/sign-in", user_controller.user_signin_post);
 
 router.get("/user/:id/delete", user_controller.user_delete_get);
 router.post("/user/:id/delete", user_controller.user_delete_post);

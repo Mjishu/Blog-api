@@ -1,9 +1,9 @@
 extends layout 
 
 block content 
-    if user
+  h1= title
+    -//if user
       form(action="" method="POST") 
-          h1= title
           input(type="text" name="title" placeholder="title") 
           br
           input(type="text" name="description" placeholder="description")
@@ -19,11 +19,11 @@ block content
           if errors 
             for err in errors
               p #{err.msg}   
-    else 
-      h1 You are not logged in
-      a(href="/sign-up") Sign up
-      p or
-      a(href="/sign-in") Log in
+    //- else 
+    //-   h1 You are not logged in
+    //-   a(href="/sign-up") Sign up
+    //-   p or
+    //-   a(href="/sign-in") Log in
 
 
 //- todo Implement the User who created it and image if theres is one
