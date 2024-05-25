@@ -1,0 +1,13 @@
+extends layout 
+
+block content 
+    h1=title
+
+    if post
+        if post.user
+            h3= post.user.username
+        p= post.description
+        p= post.date
+
+
+    a(href="/") Home 

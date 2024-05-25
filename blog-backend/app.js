@@ -10,6 +10,7 @@ const passport = require("passport");
 const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
+const MongoStore = require("connect-mongo")
 
 const indexRouter = require('./routes/index');
 const blogRouter = require("./routes/blogs");
@@ -19,15 +20,15 @@ const app = express();
 
 // -------------------------------view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({secret: process.env.SESSIONSECRET, resave:false,saveUninitialized:true }));
+app.use(session({secret: process.env.SESSIONSECRET, resave:false,saveUninitialized:false, store: MongoStore.create({mongoUrl: process.env.MONGOAPI})}));
+app.use(passport.initialize())
 app.use(passport.session());
 app.use(express.urlencoded({extended:false}));
 
@@ -44,6 +45,7 @@ async function main(){
 }
 
 //?-------------------------Authentication-------------------------------------------
+//! Not staying logged in when i move between links
 passport.use(
   new LocalStrategy(async(username,password,done) =>{
     try{
@@ -55,6 +57,7 @@ passport.use(
       if(!match){
         return done (null,false, {message:"Incorrect Password"})
       };
+      console.log("found user")
       return done(null,user);
     }catch(err){
       return done(err)

@@ -2,7 +2,6 @@ const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 const bcrpyt = require("bcryptjs")
 const {body,validationResult} = require("express-validator");
-const { post } = require("../routes/blogs");
 
 exports.user_list = asyncHandler(async(req,res,next) =>{
     res.send(`Not implemented: user list`)

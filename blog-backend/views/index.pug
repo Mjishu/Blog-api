@@ -6,19 +6,23 @@ block content
     h4 welcome #{user.username}
     if user.isAuthor 
       p Welcome Author!
+    a(href="/users/create") Post Something? 
     a(href="/log-out") Log Out? 
 
   if post_list.length 
     ul
     each post in post_list
+      //- -console.log(post.user)
       li 
         a(href=post.url) #{post.title}
-        p #{post.description}
+        //- p #{post.description}
         p #{post.date.getFullYear()} #{post.date.getMonth()} #{post.date.getDate()}
-        h4 #{post.user.username}
+        if post.user
+          h4 #{post.user.username}
   else 
     p there are no posts
 
-  a(href="/sign-in")  Login
-  br
-  a(href="/sign-up")  Sign Up
+  if !user
+    a(href="/sign-in")  Login
+    br
+    a(href="/sign-up")  Sign Up

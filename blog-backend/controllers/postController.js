@@ -8,10 +8,10 @@ exports.index = asyncHandler(async(req,res,next)=>{
         .populate("user")
         .exec()
 
+    // console.log(req.user)
     res.render("index",
         {title:"Home Page",
-        post_list: allPosts,
-        user: req.user
+        post_list: allPosts, //! The error is because this is looking for current logged in user, not the user in allPosts
         }
     )
 })
@@ -31,14 +31,14 @@ exports.post_detail = asyncHandler(async(req,res,next) =>{
         return next(err);
     }
     // if(post.isPublished){} //* Implemenet this for the user interaction but not author interaction
-    res.render("post-detail",{
+    res.render("postDetail",{
         title:post.title,
         post:post
     })
 });
 
 exports.post_create_get = asyncHandler(async(req,res,next)=>{
-    res.render("post_create",{title:"Create Post"})
+    res.render("postCreate",{title:"Create Post"})
 })
 
 exports.post_create_post = [
@@ -48,9 +48,30 @@ exports.post_create_post = [
     .escape(),
     
     asyncHandler(async(req,res,next)=>{
-    res.send("Not Implemented: post create POST")  
+        const errors = validationResult(req)
+
+        if (!errors.isEmpty()){
+            res.render("postCreate", {title:"Create Post", errors:errors.array()});
+            return
+        }else{
+            try{
+                const newPost = new Post({
+                    title:req.body.title,
+                    description: req.body.description,
+                    isPublished: req.body.isPublished,
+                    date: new Date(),
+                    user: req.user.username
+                });
+                const result = await newPost.save();
+                res.redirect("/")
+            }catch(err){
+                return next(err)
+            }
+        }
+        
 })
 ]
+
 exports.post_delete_get = asyncHandler(async(req,res,next)=>{
     res.send("Not Implemented: post Delete GET ")  
 })
