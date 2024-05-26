@@ -1,20 +1,22 @@
 import React from 'react'
 
 function App() {
-  const [backendData, setBackendData] = React.useState()
+  const [backendData, setBackendData] = React.useState({})
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(()=>{
-    fetch('/api')
+    fetch("api")
     .then(res => {
-      console.log(`status code ${res.status}`)
-      return res.json()})
-    .then(data => {
-      console.log (`data is ${JSON.stringify(data)}`)
-      setBackendData(data)})
-    .finally(()=> setLoading(false))
+      console.log(res)
+      return res.json()
+    })
+    .then(data => setBackendData(data))
+    .finally(() => setLoading(false))
   },[])
-  console.log(backendData)
+  
+  React.useEffect(()=>{
+    console.log(`backend Data: ${JSON.stringify(backendData)}`)
+  },[backendData])
 
   if(loading){
     return (
@@ -22,13 +24,13 @@ function App() {
     )
   }
 
-  // const dataMapped = backendData.users.map((user,i) => (
-  //   <p key={i}>{user}</p>
-  // ))
+  const dataMapped = backendData.messages.map((user,i) => (
+    <p key={i}>{user}</p>
+  ))
 
   return (
     <div>
-      {backendData}
+      {dataMapped}
     </div>
   )
 }

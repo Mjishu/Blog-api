@@ -13,7 +13,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const MongoStore = require("connect-mongo")
 
-const indexRouter = require('./routes/index');
+// const indexRouter = require('./routes/index');
 const blogRouter = require("./routes/blogs");
 const User = require("./models/user")
 
@@ -23,7 +23,12 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(cors())
+const corsOptions ={
+  origin:"*",
+  credentials:true,
+  optionSuccessStatus:200
+}
+app.use(cors(corsOptions))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
@@ -96,9 +101,19 @@ app.get("/log-out", (req,res,next)=>{
 })
 
 
-app.get("/api", (req,res) =>{ //?  I should just be able to get the data from the mongo DB
-  res.send("hello from back here")
+// app.get("/api", (req,res) =>{ //?  I should just be able to get the data from the mongo DB
+//   res.setHeader("Content-Type", "application/json")
+//   res.json({"messages":[
+//     "reply", "not a reply", "i dont wanna talk to you"
+//   ]})
+// })
+
+app.get("/api", (req,res)=>{
+  res.json({"messages":[
+      "wow i finally figured it out", " i thought i was going to go crazy", " about damn time"
+  ]})
 })
+
 
 //------------------------------- catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -117,3 +132,4 @@ module.exports = app;
 
 
 // TODO) Fix the login issue, Add route protection 
+
