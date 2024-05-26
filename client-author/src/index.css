@@ -1,0 +1,55 @@
+:root{
+    --dark-color: 0 4% 14%;
+    --light-color: 0 2% 89%;
+}
+
+body{
+    margin:0;
+    background-color: hsl(var(--dark-color));
+}
+
+/* *--------------------------text-styling--------------------------------------------- */
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+
+
+/* ?--------------------------Content-------------------------------------- */
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: hsl(var(--light-color));
+    /* background: red; */
+}
+
+.navbar a{
+    text-decoration: none;
+    color: hsl(var(--light-color));
+}
+
+.link-holder{
+    display: flex;
+    justify-content: space-around;
+    font-size: 32px;
+}
+
+.web-title{
+    font-size: 48px;
+    /* background-color: red; */
+}
+.web-title:hover{
+    text-decoration: underline;
+}
+
+.holder-1{
+    width: 35rem;
+    /* background: yellow; */
+}
+.holder-2{
+    /* background-color: blue; */
+    width: 35rem;
+}

@@ -1,4 +1,6 @@
 import React from 'react'
+import Home from './components/Home'
+import Navbar from './components/Navbar'
 
 function App() {
   const [backendData, setBackendData] = React.useState({})
@@ -6,17 +8,11 @@ function App() {
 
   React.useEffect(()=>{
     fetch("api")
-    .then(res => {
-      console.log(res)
-      return res.json()
-    })
+    .then(res =>  res.json()
+    )
     .then(data => setBackendData(data))
     .finally(() => setLoading(false))
   },[])
-  
-  React.useEffect(()=>{
-    console.log(`backend Data: ${JSON.stringify(backendData)}`)
-  },[backendData])
 
   if(loading){
     return (
@@ -30,7 +26,9 @@ function App() {
 
   return (
     <div>
-      {dataMapped}
+      <Navbar/>
+      {/* {dataMapped} */}
+      <Home/>
     </div>
   )
 }
