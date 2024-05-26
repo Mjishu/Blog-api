@@ -12,7 +12,8 @@ exports.index = asyncHandler(async(req,res,next)=>{
     // console.log(req.user)
     res.render("index",
         {title:"Home Page",
-        post_list: allPosts, //! The error is because this is looking for current logged in user, not the user in allPosts
+        post_list: allPosts, 
+        user:req.user //? The log in didnt seem to work before because I didnt have this line
         }
     )
 })
@@ -61,7 +62,7 @@ exports.post_create_post = [
                     description: req.body.description,
                     isPublished: req.body.isPublished,
                     date: new Date(),
-                    user: req.user.username
+                    user: req.user 
                 });
                 const result = await newPost.save();
                 res.redirect("/")

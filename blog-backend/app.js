@@ -64,7 +64,7 @@ passport.use(
       if(!match){
         return done (null,false, {message:"Incorrect Password"})
       };
-      console.log(user) //! Finds the user but doesnt log in?? or does it log in for a second and then log out 
+      console.log(user) //! Finds the user but logs in for a second and then log out 
       return done(null,user);
     }catch(err){
       return done(err)

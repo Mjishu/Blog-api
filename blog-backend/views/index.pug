@@ -2,11 +2,12 @@ extends layout
 
 block content
   h1= title
+  -console.log(user)
   if user
     h4 welcome #{user.username}
     if user.isAuthor 
       p Welcome Author!
-    a(href="/users/create") Post Something? 
+      a(href="/posts/create") Post Something? 
     a(href="/log-out") Log Out? 
 
   if post_list.length 
