@@ -53,3 +53,35 @@ body{
     /* background-color: blue; */
     width: 35rem;
 }
+
+/* -----------------------Home Page-------------------------------- */
+
+.carousel-item{
+    position: relative;
+}
+
+.carousel-image{
+    border-radius: 10px;
+}
+
+.carousel-text-items{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 24rem;
+    height: 500px;
+    top:0;
+    color: hsl(var(--light-color));
+}
+
+.carousel-text-items p{
+    width: 14rem;
+}
+
+.carousel{
+    display: flex;
+    gap: .5rem;
+}
