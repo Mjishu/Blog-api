@@ -10,7 +10,7 @@ export default function Navbar(){
             <h1 className="web-title">Blog</h1>
             <div className="link-holder holder-2">
                 <a href="#">Home</a>
-                <img className="hamburger-menu" src="../../public/HamburgerMenu.svg" alt="Hamburger Menu" />
+                <img className="hamburger-menu" src="/HamburgerMenu.svg" alt="Hamburger Menu" />
             </div>
         </header>
     )
