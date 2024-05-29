@@ -17,7 +17,7 @@ block content
       li 
         a(href=post.url) #{post.title}
         //- p #{post.description}
-        p #{post.date.getFullYear()} #{post.date.getMonth()} #{post.date.getDate()}
+        p #{post.date}
         if post.user
           h4 #{post.user.username}
   else 

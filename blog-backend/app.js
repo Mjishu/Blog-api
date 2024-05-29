@@ -13,9 +13,10 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const MongoStore = require("connect-mongo")
 
-// const indexRouter = require('./routes/index');
+//-----------------------Data Imports----------------------------------------
 const blogRouter = require("./routes/blogs");
 const User = require("./models/user")
+const Posts = require("./models/posts")
 
 const app = express();
 
@@ -108,10 +109,23 @@ app.get("/log-out", (req,res,next)=>{
 //   ]})
 // })
 
-app.get("/api", (req,res)=>{
-  res.json({"messages":[
-      "wow i finally figured it out", " i thought i was going to go crazy", " about damn time"
-  ]})
+app.get("/api", async(req,res)=>{
+  try{
+    const posts = await Posts.find().populate("user")
+    res.json(posts)
+  }catch(err){
+    res.status(500).json({message: "error fetching from db", error:err})
+  }
+})
+
+app.delete("/api/post/:id", async(req,res)=>{
+  const itemId = req.params.id
+  try{
+    await mongoDB.delete(itemId)
+    res.stats(200).json({message:"Item Deleted Succesfully"})
+  }catch(err){
+    res.status(500).json({message:"Message failed to delete", err})
+  }
 })
 
 

@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
     image: {type:String},
     user:{type:Schema.Types.ObjectId, ref:"User"},
-    date: {type:Date},
-    title:{type:String, required:true, minLength:4},
+    date: {type:String},
+    title:{type:String, required:true, minLength:3},
     description: {type:String},
     isPublished: {type:Boolean},
 })

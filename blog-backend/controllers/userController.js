@@ -41,7 +41,7 @@ exports.user_create_post = [
                 const user = new User({
                     username: req.body.username,
                     password:hashedPassword,
-                    isAuthor: false
+                    isAuthor: true
                 });
                 const result = await user.save();
                 res.redirect("/")

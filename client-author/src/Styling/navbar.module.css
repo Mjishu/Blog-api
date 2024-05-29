@@ -1,0 +1,44 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: hsl(var(--light-color));
+    /* background: red; */
+    font-size: 28px;
+    height: 4rem;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: hsl(var(--light-color));
+}
+
+.linkHolder{
+    display: flex;
+    justify-content: space-around;
+}
+
+.webTitle{
+    font-size: 48px;
+    /* background-color: red; */
+}
+.webTitle:hover{
+    border-bottom: 3px solid hsl(var(--light-color));
+}
+.linkHolder *:hover{
+    text-decoration: underline solid hsl(var(--light-color)/.2) 3px;
+}
+
+.linkHolder *:active{
+    text-decoration-color: hsl(var(--light-color)/.75);
+}
+
+
+.holder1{
+    width: 35rem;
+    /* background: yellow; */
+}
+.holder2{
+    /* background-color: blue; */
+    width: 35rem;
+}

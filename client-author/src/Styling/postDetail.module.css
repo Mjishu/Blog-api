@@ -1,0 +1,45 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    padding-top:2.5rem;
+
+    
+}
+
+.content * {
+    margin: auto;
+}
+
+.content div{
+    text-align: start;
+    margin-left: 35rem;
+}
+
+.content h1{
+    font-size: 40px;
+}
+
+.coverImage{
+    width: 50rem;
+    height: auto;
+} 
+
+.author{
+    font-style: italic;
+    color: hsl(var(--light-color)/ 0.65);
+}
+
+.editContent{
+    display: flex;
+    gap: .5rem;
+    /* background-color: red; */
+    
+}
+
+.editContent *{
+    text-decoration: none;
+    color: hsl(var(--light-color));
+}
+.editContent *:hover{
+    text-decoration: solid underline 2px ;
+}

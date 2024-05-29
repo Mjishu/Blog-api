@@ -1,0 +1,33 @@
+
+.carouselItem{
+    position: relative;
+}
+
+.carouselImage{
+    border-radius: 10px;
+    height: 500px;
+    width: 400px;
+}
+
+.carouselTextItems{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 24rem;
+    height: 500px;
+    top:0;
+    color: hsl(var(--dark-color));
+}
+
+.carouselTextItems p{
+    width: 14rem;
+}
+
+.carousel{
+    display: flex;
+    gap: .5rem;
+}
+

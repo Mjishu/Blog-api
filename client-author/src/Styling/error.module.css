@@ -1,0 +1,18 @@
+.errorHolder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.link{
+    text-decoration: none;
+    color: #879ec0;
+}
+
+.link:hover{
+    color: rgb(67, 147, 194);
+}

@@ -1,0 +1,24 @@
+.createForm{
+    display: flex;
+    justify-content: center;
+
+    height: 100vh;
+}
+
+
+input{
+    box-shadow: 0 0 5px 5px hsl(var(--dark-color)) inset;
+}
+
+.createForm *{
+    width: fit-content;
+}
+.textBody{
+    width: 50rem;
+    height: 30rem;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+}

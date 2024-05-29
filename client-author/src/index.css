@@ -6,6 +6,7 @@
 body{
     margin:0;
     background-color: hsl(var(--dark-color));
+    color: hsl(var(--light-color));
 }
 
 /* *--------------------------text-styling--------------------------------------------- */
@@ -14,74 +15,12 @@ body{
     text-transform: uppercase;
 }
 
+/*  */
 
-
-/* ?--------------------------Content-------------------------------------- */
-
-.navbar{
+.appContent{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: hsl(var(--light-color));
-    /* background: red; */
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(3,10rem); */
 }
 
-.navbar a{
-    text-decoration: none;
-    color: hsl(var(--light-color));
-}
-
-.link-holder{
-    display: flex;
-    justify-content: space-around;
-    font-size: 32px;
-}
-
-.web-title{
-    font-size: 48px;
-    /* background-color: red; */
-}
-.web-title:hover{
-    text-decoration: underline;
-}
-
-.holder-1{
-    width: 35rem;
-    /* background: yellow; */
-}
-.holder-2{
-    /* background-color: blue; */
-    width: 35rem;
-}
-
-/* -----------------------Home Page-------------------------------- */
-
-.carousel-item{
-    position: relative;
-}
-
-.carousel-image{
-    border-radius: 10px;
-}
-
-.carousel-text-items{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    width: 24rem;
-    height: 500px;
-    top:0;
-    color: hsl(var(--light-color));
-}
-
-.carousel-text-items p{
-    width: 14rem;
-}
-
-.carousel{
-    display: flex;
-    gap: .5rem;
-}
