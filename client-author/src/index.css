@@ -20,6 +20,7 @@ body{
 .appContent{
     display: flex;
     gap: 1.5rem;
+    flex-direction: row;
     flex-wrap: wrap;
     /* grid-template-columns: repeat(3,10rem); */
 }

@@ -28,6 +28,9 @@
 
 .carousel{
     display: flex;
+    /* flex-direction: row; */
     gap: .5rem;
+    width: fit-content;
+    /* background: red; */
 }
 

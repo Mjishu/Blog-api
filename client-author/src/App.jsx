@@ -26,15 +26,15 @@ function App() {
     navigate(`/post/${id}`)
   }
   
-  const dataMapped = backendData.map((user) => (
+  const dataMapped = backendData.map((item) => (
     <Home 
-        author={user.user.username}
-        key={user._id} 
-        description={user.description}
-        title={user.title}
+        author={item.user.username}
+        key={item._id} 
+        description={item.description}
+        title={item.title}
         handleClick={handleClick}
-        id={user._id}
-        image={user.image}
+        id={item._id}
+        image={item.image}
       />
   ))
 

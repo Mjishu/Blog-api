@@ -15,6 +15,7 @@
 
 .linkHolder{
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
 }
 
@@ -41,4 +42,8 @@
 .holder2{
     /* background-color: blue; */
     width: 35rem;
+}
+
+img{
+    width: 2.5rem;
 }
