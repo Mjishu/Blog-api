@@ -1,0 +1,22 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-content: center;
+    padding-top: 5rem;
+}
+
+.formDiv{
+    margin: auto;
+    gap: .75rem;
+}
+
+.formDiv *{
+    width: fit-content;
+    
+}
+
+.textBody{
+    width: 50rem;
+    height: 30rem;
+}

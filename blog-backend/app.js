@@ -118,15 +118,15 @@ app.get("/api", async(req,res)=>{
   }
 })
 
-// app.delete("/api/post/:id", async(req,res)=>{
-//   const itemId = req.params.id
-//   try{
-//     await mongoDB.delete(itemId)
-//     res.stats(200).json({message:"Item Deleted Succesfully"})
-//   }catch(err){
-//     res.status(500).json({message:"Message failed to delete", err})
-//   }
-// })
+app.delete("/api/post/:id", async(req,res)=>{
+  const itemId = req.body.id
+  try{
+    await Posts.findByIdAndDelete(itemId)
+    res.status(200).json({message:"Item Deleted Succesfully"})
+  }catch(err){
+    res.status(500).json({message:"Message failed to delete", err})
+  }
+})
 
 const dateStyle = new Intl.DateTimeFormat("en-us", {
   dateStyle: "full"
@@ -147,6 +147,11 @@ app.post("/api/post/create", async(req,res) => {
     console.log(newPost)
     // const newData = req.body
     // console.log(newData)
+})
+
+app.post("/api/post/:id/edit", async(req,res)=>{
+  const itemId = req.body.id
+  console.log(itemId)
 })
 
 //------------------------------- catch 404 and forward to error handler

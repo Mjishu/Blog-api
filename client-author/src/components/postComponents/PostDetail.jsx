@@ -31,14 +31,6 @@ function PostDetail() {
     }
   },[id,apiItems])
 
-  function handleDelete(id){
-    const url = `/api/post/${id}`;
-    console.log(window.location.href)
-    // try{
-    //   const response = await fetch(url, {method:"DELETE"})
-    // }
-  }
-
   if (loading){
     return <p>Loading...</p>
   }
@@ -61,7 +53,7 @@ function PostDetail() {
         </div>
         <div className={styling.editContent}>
             <Link to="edit">Edit</Link>
-            <Link to="delete" state={{post,handleDelete}}>Delete</Link>
+            <Link to="delete">Delete</Link>
         </div>
       </div>
     </>

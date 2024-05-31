@@ -6,6 +6,7 @@ import PostDetail from './components/postComponents/PostDetail.jsx'
 import App from "./App.jsx"
 import PostCreate from "./components/postComponents/PostCreate.jsx"
 import Delete from "./components/postComponents/Delete.jsx"
+import PostEdit from "./components/postComponents/PostEdit.jsx"
 
 const routes = [
     {
@@ -32,6 +33,10 @@ const routes = [
       {
         path:"post/create",
         element:<PostCreate/>
+      },
+      {
+        path:"post/:id/edit",
+        element:<PostEdit/>
       }
 ]
 

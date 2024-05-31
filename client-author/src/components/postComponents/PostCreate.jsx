@@ -1,6 +1,7 @@
 import React from 'react'
 import styling from "../../Styling/postCreate.module.css"
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../generalComponents/Navbar';
 
 function PostCreate(props) {
   const [formData,setFormData] = React.useState({
@@ -21,7 +22,9 @@ function PostCreate(props) {
       description: formData.description,
       body: formData.body,
       isPublished: formData.isPublished,
-      image: formData.image.name
+    }
+    if(formData.image){
+      jsonData.image = formData.image
     }
     // console.log(formData, ` image: ${formData.image}`)
     
@@ -51,6 +54,7 @@ function PostCreate(props) {
 
   return (
     <div>
+        <Navbar/>
         <h1>{props.title}</h1>
         <form onSubmit={handleSubmit} className={styling.createForm}>
             <div>

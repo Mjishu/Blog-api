@@ -1,16 +1,42 @@
 // import React from 'react'
-import { useLocation,useNavigate } from "react-router-dom"
+import { /* useLocation ,*/useNavigate } from "react-router-dom"
+import Navbar from "../generalComponents/Navbar";
 
-function Delete(props) {
+function Delete() { //TODO I dont think its sending the id to the backend to get deleted
 
+  const navigate = useNavigate()
+  function handleSubmit(event){
+    event.preventDefault();
+    const url = window.location.href
+    const parts = url.split("/")
+    const partsLength = parts.length - 2
+    
+    const jsonData = {
+      id: parts[partsLength]
+    }
+
+    // console.log(id)
+    const fetchOptions = {
+      method:"DELETE",
+      headers:{
+        'Content-Type': "application/json",
+      },
+      body:JSON.stringify(jsonData)
+    }
+
+    fetch(`/api/post/${jsonData.id}`, fetchOptions)
+    .catch(error => console.error(error))
+
+    navigate("/")
+  }
   
   return (
     <div>
-       <h1>{props.title}</h1>
-       <p>Are you sure you want to delete?</p>
-       <form action="" >
+      <Navbar/>
+       <p>Are you sure you want to delete this Post?</p>
+       <form onSubmit={handleSubmit} >
         <input type="hidden" id="postid" name="postid"  />{/* value={props.post._id} */}
-        <button type="submit" onClick={() => console.log(window.location.href, "mmeow")}>Delete</button>
+        <button type="submit" >Delete</button>
        </form>
     </div>
   )
