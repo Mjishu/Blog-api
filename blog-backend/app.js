@@ -193,9 +193,20 @@ app.get("/api/user", async(req,res)=>{
   res.send(req.user)
 })
 
-app.post("/api/user/login", async(req,res)=>{ //! is this safe? should the password be sent unencrypted over the web? how can i make it so it uses bcrypt?
-  res.json({message:"tehe sent"})
-  console.log(req.body)
+app.post("/api/user/signup", async(req,res)=>{ //! is this safe? should the password be sent unencrypted over the web? how can i make it so it uses bcrypt?
+  try{
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const newUser = new User({
+      username: req.body.username,
+      password:hashedPassword,
+      isAuthor:true
+    })
+    await newUser.save()
+    res.json({message:"Profile made successfully"}) //? MAKE SURE TO BCRYPT PASSWORD
+  }catch(error){
+    console.log(error)
+    res.status(500).send({message:"error creating user"})
+  }
 })
 
 //------------------------------- catch 404 and forward to error handler

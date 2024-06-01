@@ -18,6 +18,7 @@ export default function Home(props){
 
             </div>
             <Link to="/sign-in">Sign in</Link>
+            <Link to="/sign-up">Sign Up</Link>
         </>
     )
 }
