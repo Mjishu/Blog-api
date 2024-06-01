@@ -24,7 +24,7 @@ function PostEdit() {
     const navigate = useNavigate()
 
     React.useEffect(()=>{
-        fetch(`/api`)
+        fetch(`/api/post`)
         .then(res => res.json())
         .then(data => setBackendData(data))
         .catch(error => console.error(error))

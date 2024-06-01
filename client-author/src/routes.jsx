@@ -7,6 +7,7 @@ import App from "./App.jsx"
 import PostCreate from "./components/postComponents/PostCreate.jsx"
 import Delete from "./components/postComponents/Delete.jsx"
 import PostEdit from "./components/postComponents/PostEdit.jsx"
+import Profile from "./components/user/Profile.jsx"
 
 const routes = [
     {
@@ -37,6 +38,10 @@ const routes = [
       {
         path:"post/:id/edit",
         element:<PostEdit/>
+      },
+      {
+        path:"/profile",
+        element:<Profile/>
       }
 ]
 

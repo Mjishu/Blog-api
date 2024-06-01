@@ -9,7 +9,7 @@ function App() {
   const navigate = useNavigate();
 
   React.useEffect(()=>{
-    fetch("api")
+    fetch("api/post")
     .then(res =>  res.json())
     .then(data => setBackendData(data))
     .finally(() => setLoading(false))

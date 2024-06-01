@@ -1,6 +1,7 @@
 // import React from "react";
 import StoryItem from "../itemComponents/storyItem";
 import Styling from "../../Styling/home.module.css"
+import { Link } from "react-router-dom";
 // import Navbar from "./Navbar";
 
 export default function Home(props){
@@ -14,8 +15,9 @@ export default function Home(props){
                     description={props.description} // ?
                     author={props.author}
                 />
-    
+
             </div>
+            <Link to="/sign-in">Sign in</Link>
         </>
     )
 }

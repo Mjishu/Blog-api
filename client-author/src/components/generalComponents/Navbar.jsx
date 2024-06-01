@@ -5,7 +5,7 @@ export default function Navbar(){
     return (
         <header className={Styling.navbar}>
             <div className={`${Styling.linkHolder} ${Styling.holder1}`}>
-                <a href="#">About</a>
+                <Link to="/profile">Profile</Link>
                 <Link to="/post/create">Create</Link>
                 <a href="#">Contact</a>
             </div>

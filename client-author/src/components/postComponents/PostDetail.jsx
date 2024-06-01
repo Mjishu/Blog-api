@@ -12,7 +12,7 @@ function PostDetail() {
 
   // Fetches API
   React.useEffect(()=>{
-    fetch(`/api`)
+    fetch(`/api/post`)
     .then(res => res.json())
     .then(data => {
       setApiItems(data)

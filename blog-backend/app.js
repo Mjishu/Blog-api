@@ -32,16 +32,10 @@ const corsOptions ={
 app.use(cors(corsOptions))
 app.use(logger('dev'));
 app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({secret: process.env.SESSIONSECRET, resave:false,saveUninitialized:false, store: MongoStore.create({mongoUrl: process.env.MONGOAPI})}));
-app.use(passport.initialize())
-app.use(passport.session());
-app.use(express.urlencoded({extended:false}));
-
-app.use('/', blogRouter);
-// app.use("/blog", blogRouter)
 
 //*-------------------MongoDB Connection---------------------------------
 mongoose.set("strictQuery", "false")
@@ -51,9 +45,14 @@ main().catch((err) => console.log(err));
 async function main(){
   await mongoose.connect(mongoDB)
 }
+app.use(session({secret: process.env.SESSIONSECRET, resave:false,saveUninitialized:false, store: MongoStore.create({mongoUrl: process.env.MONGOAPI})}));
+app.use(passport.initialize())
+app.use(passport.session());
+
+app.use('/', blogRouter);
+// app.use("/blog", blogRouter)
 
 //?-------------------------Authentication-------------------------------------------
-//! Not staying logged in when i move between links, Should this be in userController on sign-in POST?
 passport.use(
   new LocalStrategy(async(username,password,done) =>{
     try{
@@ -64,8 +63,7 @@ passport.use(
       const match = await bcrypt.compare(password,user.password);
       if(!match){
         return done (null,false, {message:"Incorrect Password"})
-      };
-      console.log(user) //! Finds the user but logs in for a second and then log out 
+      }; 
       return done(null,user);
     }catch(err){
       return done(err)
@@ -86,18 +84,34 @@ passport.deserializeUser(async (id,done)=>{
   }
 })
 
-app.post("/log-in", passport.authenticate("local", {
-  successRedirect:"/",
-  failureRedirect:"/"
-}))
+app.post("/api/user/log-in", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      console.error("Error during authentication:", err);
+      return next(err);
+    }
+    if (!user) {
+      console.log("Sign in attempted and failed");
+      return res.json({message:"failed to login, is your username and password correct?"}); // failureRedirect
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        console.error("Error during login:", err);
+        return next(err);
+      }
+      console.log("Sign in attempted and successful");
+      return res.json({message:"success"}); // successRedirect
+    });
+  })(req, res, next);
+});
 
-app.get("/log-out", (req,res,next)=>{
+app.get("/api/log-out", (req,res,next)=>{
   req.logout((err)=>{
     if(err){
       return next(err);
     }
     console.log("loggin out")
-    res.redirect("/")
+    res.json({success:true})
   })
 })
 
@@ -109,7 +123,7 @@ app.get("/log-out", (req,res,next)=>{
 //   ]})
 // })
 
-app.get("/api", async(req,res)=>{
+app.get("/api/post", async(req,res)=>{
   try{
     const posts = await Posts.find().populate("user")
     res.json(posts)
@@ -165,13 +179,23 @@ app.put("/api/post/:id/edit", async(req,res)=>{
       if(!updatedPost){
         return res.status(400).send({message:"Post not found"})
       }
-      console.log("updated post:",updatedPost)
       res.status(200).json(updatedPost)
   }catch(error){
       console.log(error)
       res.status(500).send({message:"error updating post"})
   }
   
+})
+
+//?--------------------------User API--------------------------------------
+
+app.get("/api/user", async(req,res)=>{
+  res.send(req.user)
+})
+
+app.post("/api/user/login", async(req,res)=>{ //! is this safe? should the password be sent unencrypted over the web? how can i make it so it uses bcrypt?
+  res.json({message:"tehe sent"})
+  console.log(req.body)
 })
 
 //------------------------------- catch 404 and forward to error handler
