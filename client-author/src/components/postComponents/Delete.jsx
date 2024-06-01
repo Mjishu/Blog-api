@@ -3,7 +3,6 @@ import { /* useLocation ,*/useNavigate } from "react-router-dom"
 import Navbar from "../generalComponents/Navbar";
 
 function Delete() { //TODO I dont think its sending the id to the backend to get deleted
-
   const navigate = useNavigate()
   function handleSubmit(event){
     event.preventDefault();
@@ -21,10 +20,10 @@ function Delete() { //TODO I dont think its sending the id to the backend to get
       headers:{
         'Content-Type': "application/json",
       },
-      body:JSON.stringify(jsonData)
+      body: jsonData
     }
 
-    fetch(`/api/post/${jsonData.id}`, fetchOptions)
+    fetch(`/api/post/${jsonData.id}/delete`, fetchOptions)
     .catch(error => console.error(error))
 
     navigate("/")

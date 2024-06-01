@@ -118,7 +118,7 @@ app.get("/api", async(req,res)=>{
   }
 })
 
-app.delete("/api/post/:id", async(req,res)=>{
+app.delete("/api/post/:id/delete", async(req,res)=>{
   const itemId = req.body.id
   try{
     await Posts.findByIdAndDelete(itemId)
@@ -149,9 +149,29 @@ app.post("/api/post/create", async(req,res) => {
     // console.log(newData)
 })
 
-app.post("/api/post/:id/edit", async(req,res)=>{
-  const itemId = req.body.id
-  console.log(itemId)
+app.put("/api/post/:id/edit", async(req,res)=>{
+  const contentId = req.params.id;
+  const bodyContent = req.body;
+
+  try{
+      const updatedPost = await Posts.findByIdAndUpdate(contentId, 
+        { 
+        title:bodyContent.title,
+        description: bodyContent.description,
+        body: bodyContent.body,
+        isPublished: bodyContent.isPublished,
+        // image:bodyContent.image
+      }, {new:true});
+      if(!updatedPost){
+        return res.status(400).send({message:"Post not found"})
+      }
+      console.log("updated post:",updatedPost)
+      res.status(200).json(updatedPost)
+  }catch(error){
+      console.log(error)
+      res.status(500).send({message:"error updating post"})
+  }
+  
 })
 
 //------------------------------- catch 404 and forward to error handler

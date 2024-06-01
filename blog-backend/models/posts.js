@@ -7,6 +7,7 @@ const PostSchema = new Schema({
     user:{type:Schema.Types.ObjectId, ref:"User"},
     date: {type:String},
     title:{type:String, required:true, minLength:3},
+    body:{type:String},
     description: {type:String},
     isPublished: {type:Boolean},
 })
