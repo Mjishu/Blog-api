@@ -1,9 +1,24 @@
-// import React from 'react'
-import { /* useLocation ,*/useNavigate } from "react-router-dom"
+import React from 'react'
+import {useNavigate } from "react-router-dom"
 import Navbar from "../generalComponents/Navbar";
+import NotLoggedIn from '../notLoggedIn';
 
 function Delete() { //TODO I dont think its sending the id to the backend to get deleted
   const navigate = useNavigate()
+  const [loading,setLoading]= React.useState(true)
+  const [backendData,setBackendData] = React.useState(null)
+
+  React.useEffect(()=>{ 
+    try{
+        fetch("/api/user")
+        .then(res => res.json())
+        .then(data => setBackendData(data))
+        .catch(error => console.error(error))
+        .finally(() => setLoading(false))
+    }catch(error){
+        console.error(error)
+    }
+},[])
   function handleSubmit(event){
     event.preventDefault();
     const url = window.location.href
@@ -27,6 +42,14 @@ function Delete() { //TODO I dont think its sending the id to the backend to get
     .catch(error => console.error(error))
 
     navigate("/")
+  }
+
+  if(loading){
+    return <p>Loading...</p>
+  }
+
+  if(!backendData){
+    return <NotLoggedIn/>
   }
   
   return (

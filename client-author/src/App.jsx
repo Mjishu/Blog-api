@@ -8,6 +8,7 @@ function App() {
   const [loading, setLoading] = React.useState(true)
   const navigate = useNavigate();
 
+
   React.useEffect(()=>{
     fetch("api/post")
     .then(res =>  res.json())
@@ -50,3 +51,8 @@ function App() {
 }
 
 export default App
+
+
+/* I need to protect the routes for signin and signup for users that are not logged in
+also need to protect the Create component for users that are signed in as well as the edit and delete 
+functionality */

@@ -9,6 +9,8 @@ import Delete from "./components/postComponents/Delete.jsx"
 import PostEdit from "./components/postComponents/PostEdit.jsx"
 import Profile from "./components/user/Profile.jsx"
 
+//! TIME TO ADD ROUTE PROTECTION
+
 const routes = [
     {
         path:"/",

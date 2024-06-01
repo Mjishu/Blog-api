@@ -2,6 +2,7 @@ import React from 'react'
 import Styling from "../../Styling/userInteraction.module.css"
 import Navbar from '../generalComponents/Navbar';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function SignUp() {
   const [formData,setFormData] = React.useState({
@@ -10,7 +11,22 @@ function SignUp() {
     confirmPassword: "",
 
   })
+  const [loading,setLoading]= React.useState(true)
+  const [backendData,setBackendData] = React.useState(null)
+
   const navigate = useNavigate
+
+  React.useEffect(()=>{ 
+    try{
+        fetch("/api/user")
+        .then(res => res.json())
+        .then(data => setBackendData(data))
+        .catch(error => console.error(error))
+        .finally(() => setLoading(false))
+    }catch(error){
+        console.error(error)
+    }
+},[])
 
   function handleSubmit(e){ //! If formData.pwd = formData.confpwd then do the fetch
     e.preventDefault();
@@ -45,6 +61,20 @@ function SignUp() {
         [name]:value
       }
     })
+  }
+
+  if(loading){
+    return <p>Loading...</p>
+  }
+
+
+  if(backendData){ //! How to make this work
+      return (
+        <>
+          <h3>You are already logged in</h3>
+          <Link to="/">Go home?</Link>
+        </>
+      )
   }
 
   return (

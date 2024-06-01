@@ -1,7 +1,7 @@
 import Styling from "../../Styling/navbar.module.css"
 import { Link } from "react-router-dom"
 
-export default function Navbar(){
+export default function Navbar(){ //! route protection
     return (
         <header className={Styling.navbar}>
             <div className={`${Styling.linkHolder} ${Styling.holder1}`}>

@@ -1,11 +1,30 @@
 import React from 'react'
 import Styling from "../../Styling/userInteraction.module.css"
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 function SignIn() {
   const [response,setResponse] = React.useState(null)
   const navigate = useNavigate();
+  const [loading,setLoading]= React.useState(true)
+  const [backendData,setBackendData] = React.useState(null)
+
+  React.useEffect(()=>{ 
+    try{
+        fetch("/api/user")
+        .then(res => res.json())
+        .then(data => setBackendData(data))
+        .catch(error => console.error(error))
+        .finally(() => setLoading(false))
+    }catch(error){
+        console.error(error)
+    }
+},[])
+
+React.useEffect(()=>{
+  
+},[backendData])
 
   function handleSubmit(event){
     event.preventDefault();
@@ -35,6 +54,20 @@ function SignIn() {
     if(response && response.message === "success"){
         navigate("/profile")
     }},[response,navigate])
+
+    if(loading){
+      return <p>Loading...</p>
+    }
+
+    
+    if(backendData){ //! How to make this work
+        return (
+          <>
+            <h3>You are already logged in</h3>
+            <Link to="/">Go home?</Link>
+          </>
+        )
+    }
 
   return (
     <div className={Styling.content}>

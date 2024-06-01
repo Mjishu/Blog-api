@@ -189,7 +189,7 @@ app.put("/api/post/:id/edit", async(req,res)=>{
 
 //?--------------------------User API--------------------------------------
 
-app.get("/api/user", async(req,res)=>{
+app.get("/api/user", async(req,res)=>{ //! Call this on every page to check if logged in? gotta be a better way tho
   res.send(req.user)
 })
 

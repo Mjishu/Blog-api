@@ -2,6 +2,7 @@ import React from 'react'
 import styling from "../../Styling/postCreate.module.css"
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../generalComponents/Navbar';
+import NotLoggedIn from '../notLoggedIn';
 
 function PostCreate(props) {
   const [formData,setFormData] = React.useState({
@@ -11,6 +12,20 @@ function PostCreate(props) {
     image: null,
     isPublished: false,
   })
+  const [loading,setLoading]= React.useState(true)
+  const [backendData,setBackendData] = React.useState(null)
+
+  React.useEffect(()=>{ 
+    try{
+        fetch("/api/user")
+        .then(res => res.json())
+        .then(data => setBackendData(data))
+        .catch(error => console.error(error))
+        .finally(() => setLoading(false))
+    }catch(error){
+        console.error(error)
+    }
+},[])
 
   const navigate = useNavigate();
 
@@ -50,6 +65,12 @@ function PostCreate(props) {
         [name]: type === "checkbox" ? checked :(type === "file" ? files[0] : value)
       }
     })
+  }
+  if(loading){
+    return <p>Loading...</p>
+  }
+  if(!backendData){
+    return <NotLoggedIn/>
   }
 
   return (

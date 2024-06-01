@@ -1,7 +1,9 @@
 import React from 'react'
 import styling from "../../Styling/postEdit.module.css"
 import Navbar from '../generalComponents/Navbar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,  } from 'react-router-dom';
+import NotLoggedIn from '../notLoggedIn';
+
 
 function PostEdit() {
     //? Should i make an api call so that i can populate the input value?
@@ -14,6 +16,20 @@ function PostEdit() {
         image: null,
         isPublished: false,
     })
+
+    const [backendUserData,setBackendUserData] = React.useState(null)
+  
+    React.useEffect(()=>{ 
+      try{
+          fetch("/api/user")
+          .then(res => res.json())
+          .then(data => setBackendUserData(data))
+          .catch(error => console.error(error))
+      }catch(error){
+          console.error(error)
+      }
+  },[])
+    
 
     const url = window.location.href
     const parts = url.split("/")
@@ -80,6 +96,10 @@ function PostEdit() {
 
     if(loading){
         return(<p className={styling.loading}>Loading...</p>)
+    }
+
+    if(!backendUserData){//? Maybe make this one sthat it checks if user matches post.user
+        return <NotLoggedIn/>
     }
 
     return (
