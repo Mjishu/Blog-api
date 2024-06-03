@@ -11,7 +11,10 @@ export default function StoryItem(props){
                     <h6>{props.author}</h6>
                     <h4>{props.title}</h4>
                 </div>
-                <p>{props.description}</p>
+                <div>
+                    <p>{props.description}</p>
+                    <p>{props.isPublished ? "published" : "not published"}</p>
+                </div>
             </div>
         </div>
     )

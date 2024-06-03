@@ -31,6 +31,7 @@ function PostDetail() {
     .then(data => {
       setApiItems(data)
       setLoading(false)
+      
     })
 
   },[id])
@@ -133,8 +134,6 @@ function PostDetail() {
     .catch(error => console.log(`error ${error.message}`))
   }
   
-    
-  //* Map over the comments and then call that item in the return
   return (
     <>
       <Navbar/>
@@ -146,7 +145,9 @@ function PostDetail() {
           <h3 className={styling.author}>{post.user.username}</h3>
           <p>{post.description}</p>
           <p>{post.body}</p>
+          <h6>{post.isPublished ? "Pubished" : "Not Published"}</h6>
         </div>
+
         <div className={styling.editContent}>
             <Link to="edit">Edit</Link>
             <Link to="delete">Delete</Link>
