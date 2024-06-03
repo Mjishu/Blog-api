@@ -13,10 +13,11 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const MongoStore = require("connect-mongo")
 
-//-----------------------Data Imports----------------------------------------
+//*-----------------------Data Imports----------------------------------------
 const blogRouter = require("./routes/blogs");
 const User = require("./models/user")
 const Posts = require("./models/posts")
+const Comments = require("./models/comments")
 
 const app = express();
 
@@ -114,14 +115,7 @@ app.get("/api/log-out", (req,res,next)=>{
     res.json({success:true})
   })
 })
-
-
-// app.get("/api", (req,res) =>{ //?  I should just be able to get the data from the mongo DB
-//   res.setHeader("Content-Type", "application/json")
-//   res.json({"messages":[
-//     "reply", "not a reply", "i dont wanna talk to you"
-//   ]})
-// })
+//*--------------------------Post API--------------------------------------
 
 app.get("/api/post", async(req,res)=>{
   try{
@@ -131,6 +125,7 @@ app.get("/api/post", async(req,res)=>{
     res.status(500).json({message: "error fetching from db", error:err})
   }
 })
+
 
 app.delete("/api/post/:id/delete", async(req,res)=>{
   const itemId = req.body.id
@@ -206,6 +201,43 @@ app.post("/api/user/signup", async(req,res)=>{ //! is this safe? should the pass
   }catch(error){
     console.log(error)
     res.status(500).send({message:"error creating user"})
+  }
+})
+
+//*--------------------------Comment API--------------------------------------
+
+app.post("/api/comments", async(req,res)=>{
+  const postId = req.body.id
+  const comments = await Comments.find({post:postId}) //Isnt finding any posts?
+  res.json(comments)
+
+})
+
+app.post("/api/comment/create", async(req,res)=>{
+  try{
+    const newComment = new Comments({
+      title: req.body.title,
+      description: req.body.description,
+      username: req.body.username,
+      date: dateStyle.format(new Date()),
+      post: req.body.post
+    })
+    await newComment.save()
+    res.json({message:"Comment created successfully"})
+  }catch(error){
+    console.log(error)
+    res.status(500).send({message:"error creating comment"})
+  }
+})
+
+app.delete("/api/comment/delete/", async(req,res)=>{
+  const commentId = req.body.id
+  try{
+    const deletedComment = await Comments.findByIdAndDelete(commentId)
+    res.json({message:"success"})
+  }catch(error){
+    console.log(error)
+    res.status(500).send({message:"error deleting comment"})
   }
 })
 

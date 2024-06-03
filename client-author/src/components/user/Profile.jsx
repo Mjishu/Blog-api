@@ -26,10 +26,6 @@ function Profile() {
         // }
     },[])
 
-    React.useEffect(()=>{
-        console.log(backendData)
-    },[backendData])
-
     function handleSubmit(event){//! Need to make login route befoire i fix this
         event.preventDefault();
 
