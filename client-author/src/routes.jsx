@@ -8,6 +8,7 @@ import PostCreate from "./components/postComponents/PostCreate.jsx"
 import Delete from "./components/postComponents/Delete.jsx"
 import PostEdit from "./components/postComponents/PostEdit.jsx"
 import Profile from "./components/user/Profile.jsx"
+import Contact from "./components/generalComponents/Contact.jsx"
 
 //! TIME TO ADD ROUTE PROTECTION
 
@@ -44,6 +45,10 @@ const routes = [
       {
         path:"/profile",
         element:<Profile/>
+      },
+      {
+        path:"/contact",
+        element:<Contact/>
       }
 ]
 
