@@ -1,0 +1,27 @@
+:root{
+    --dark-color: 0 4% 14%;
+    --light-color: 0 2% 89%;
+}
+
+body{
+    margin:0;
+    background-color: hsl(var(--dark-color));
+    color: hsl(var(--light-color));
+}
+
+/* *--------------------------text-styling--------------------------------------------- */
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+/*  */
+
+.appContent{
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(3,10rem); */
+}
+

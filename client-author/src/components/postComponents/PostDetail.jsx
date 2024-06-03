@@ -140,7 +140,7 @@ function PostDetail() {
       <div className={styling.content}>
         <img src={post.image} className={styling.coverImage} alt="Image for Article" />
         <div className="text">
-          <h6>{post.date}</h6>
+        <h6>{post.date}</h6>
           <h1>{post.title}</h1>
           <h3 className={styling.author}>{post.user.username}</h3>
           <p>{post.description}</p>

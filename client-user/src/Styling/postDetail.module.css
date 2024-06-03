@@ -1,0 +1,30 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    padding-top:2.5rem;
+
+    
+}
+
+.content * {
+    margin: auto;
+}
+
+.content div{
+    text-align: start;
+    margin-left: 35rem;
+}
+
+.content h1{
+    font-size: 40px;
+}
+
+.coverImage{
+    width: 50rem;
+    height: auto;
+} 
+
+.author{
+    font-style: italic;
+    color: hsl(var(--light-color)/ 0.65);
+}
