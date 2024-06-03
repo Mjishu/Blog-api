@@ -1,0 +1,53 @@
+.button{
+    background: transparent;
+    width: fit-content;;
+}
+
+img{
+    width: 5rem;
+}
+
+@keyframes hover {
+    from{
+        scale: 1;
+    }
+    to{
+        scale: 1.25;
+    }
+}
+
+@keyframes unhover {
+    from{
+        scale: 1.25;
+    }
+    to{
+        scale: 1;
+    }
+}
+/* ! animation isnt smoothe at all */
+
+.button:hover,
+.button:active{ 
+    animation-name: hover;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.button{
+    animation-name: unhover;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+/* Non animation */
+
+.linksHolder{
+    display: flex;
+    gap: 2rem;
+    /* flex-direction: row; */
+    /* justify-content: center; */
+}
+
+.linksHolder .button{
+    margin: auto;
+}

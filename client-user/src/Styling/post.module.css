@@ -31,6 +31,6 @@
     /* flex-direction: row; */
     gap: .5rem;
     width: fit-content;
+    justify-content: center;
     /* background: red; */
 }
-

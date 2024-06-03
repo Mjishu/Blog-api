@@ -5,8 +5,8 @@ export default function Navbar(){ //! route protection
     return (
         <header className={Styling.navbar}>
             <div className={`${Styling.linkHolder} ${Styling.holder1}`}>
-                <Link to="/profile">Profile</Link>
-                <Link to="/post/create">Create</Link>
+                <Link to="/about">About</Link>
+                <Link to="/#">Filler</Link>
                 <a href="/contact">Contact</a>
             </div>
             <h1 className={Styling.webTitle}>Blog</h1>

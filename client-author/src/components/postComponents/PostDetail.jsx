@@ -65,7 +65,6 @@ function PostDetail() {
     }
   },[post])
 
-  //! Something wrong here, its not mapping properly
   const commentsMapped= commentsData.map((comment)=> (
     <Comments 
     title={comment.title} 

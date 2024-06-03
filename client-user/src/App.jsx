@@ -17,10 +17,6 @@ function App() {
     .catch(error => console.error(error))
   },[])
 
-  React.useEffect(() =>{
-    console.log(backendData)
-  },[backendData])
-
   function handleClick(id){
     navigate(`/post/${id}`)
   }
@@ -47,8 +43,10 @@ function App() {
   return (
     <div>
       <Navbar/>
-      <div className={styling.carousel}>
-        {backendMapped}
+      <div className='appContent'>
+        <div className={styling.carousel}>
+          {backendMapped}
+        </div>
       </div>
     </div>
   )
