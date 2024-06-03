@@ -2,6 +2,7 @@ import React from 'react'
 import Home from './components/generalComponents/Home'
 import Navbar from './components/generalComponents/Navbar'
 import {useNavigate} from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 function App() {
   const [backendData, setBackendData] = React.useState({})
@@ -45,6 +46,12 @@ function App() {
       <div className="appContent">
         {dataMapped}
       </div>
+      {!backendData &&
+            <>
+                <Link to="/sign-in">Sign in</Link>
+                <Link to="/sign-up">Sign Up</Link>
+            </>
+            }
       
     </div>
   )

@@ -5,7 +5,7 @@ import Navbar from "../generalComponents/Navbar"
 import { Link } from 'react-router-dom'
 import CommentsCreate from '../commentComponents/commentsCreate'
 import Comments from '../commentComponents/Comments'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 function PostDetail() {
   const {id} = useParams();
